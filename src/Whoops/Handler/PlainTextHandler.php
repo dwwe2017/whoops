@@ -1,10 +1,10 @@
 <?php
 /**
-* Whoops - php errors for cool kids
-* @author Filipe Dobreira <http://github.com/filp>
-* Plaintext handler for command line and logs.
-* @author Pierre-Yves Landuré <https://howto.biapy.com/>
-*/
+ * Whoops - php errors for cool kids
+ * @author Filipe Dobreira <http://github.com/filp>
+ * Plaintext handler for command line and logs.
+ * @author Pierre-Yves Landuré <https://howto.biapy.com/>
+ */
 
 namespace Whoops\Handler;
 
@@ -14,10 +14,10 @@ use Throwable;
 use Whoops\Exception\Frame;
 
 /**
-* Handler outputing plaintext error messages. Can be used
-* directly, or will be instantiated automagically by Whoops\Run
-* if passed to Run::pushHandler
-*/
+ * Handler outputing plaintext error messages. Can be used
+ * directly, or will be instantiated automagically by Whoops\Run
+ * if passed to Run::pushHandler
+ */
 class PlainTextHandler extends Handler
 {
     const VAR_DUMP_PREFIX = '   | ';
@@ -59,8 +59,8 @@ class PlainTextHandler extends Handler
 
     /**
      * Constructor.
-     * @param  LoggerInterface|null $logger
-     *@throws InvalidArgumentException     If argument is not null or a LoggerInterface
+     * @param LoggerInterface|null $logger
+     * @throws InvalidArgumentException     If argument is not null or a LoggerInterface
      */
     public function __construct($logger = null)
     {
@@ -69,12 +69,12 @@ class PlainTextHandler extends Handler
 
     /**
      * Set the output logger interface.
-     * @param  LoggerInterface|null $logger
+     * @param LoggerInterface|null $logger
      * @throws InvalidArgumentException     If argument is not null or a LoggerInterface
      */
     public function setLogger($logger = null)
     {
-        if (! (is_null($logger)
+        if (!(is_null($logger)
             || $logger instanceof LoggerInterface)) {
             throw new InvalidArgumentException(
                 'Argument to ' . __METHOD__ .
@@ -97,7 +97,7 @@ class PlainTextHandler extends Handler
     /**
      * Set var dumper callback function.
      *
-     * @param  callable $dumper
+     * @param callable $dumper
      * @return void
      */
     public function setDumper(callable $dumper)
@@ -107,7 +107,7 @@ class PlainTextHandler extends Handler
 
     /**
      * Add error trace to output.
-     * @param  bool|null  $addTraceToOutput
+     * @param bool|null $addTraceToOutput
      * @return bool|$this
      */
     public function addTraceToOutput($addTraceToOutput = null)
@@ -116,13 +116,13 @@ class PlainTextHandler extends Handler
             return $this->addTraceToOutput;
         }
 
-        $this->addTraceToOutput = (bool) $addTraceToOutput;
+        $this->addTraceToOutput = (bool)$addTraceToOutput;
         return $this;
     }
 
     /**
      * Add previous exceptions to output.
-     * @param  bool|null $addPreviousToOutput
+     * @param bool|null $addPreviousToOutput
      * @return bool|$this
      */
     public function addPreviousToOutput($addPreviousToOutput = null)
@@ -131,7 +131,7 @@ class PlainTextHandler extends Handler
             return $this->addPreviousToOutput;
         }
 
-        $this->addPreviousToOutput = (bool) $addPreviousToOutput;
+        $this->addPreviousToOutput = (bool)$addPreviousToOutput;
         return $this;
     }
 
@@ -147,8 +147,8 @@ class PlainTextHandler extends Handler
             return $this->addTraceFunctionArgsToOutput;
         }
 
-        if (! is_integer($addTraceFunctionArgsToOutput)) {
-            $this->addTraceFunctionArgsToOutput = (bool) $addTraceFunctionArgsToOutput;
+        if (!is_integer($addTraceFunctionArgsToOutput)) {
+            $this->addTraceFunctionArgsToOutput = (bool)$addTraceFunctionArgsToOutput;
         } else {
             $this->addTraceFunctionArgsToOutput = $addTraceFunctionArgsToOutput;
         }
@@ -162,7 +162,7 @@ class PlainTextHandler extends Handler
      */
     public function setTraceFunctionArgsOutputLimit($traceFunctionArgsOutputLimit)
     {
-        $this->traceFunctionArgsOutputLimit = (integer) $traceFunctionArgsOutputLimit;
+        $this->traceFunctionArgsOutputLimit = (integer)$traceFunctionArgsOutputLimit;
     }
 
     /**
@@ -199,7 +199,7 @@ class PlainTextHandler extends Handler
 
     /**
      * Only output to logger.
-     * @param  bool|null $loggerOnly
+     * @param bool|null $loggerOnly
      * @return null|bool|void
      */
     public function loggerOnly($loggerOnly = null)
@@ -208,7 +208,7 @@ class PlainTextHandler extends Handler
             return $this->loggerOnly;
         }
 
-        $this->loggerOnly = (bool) $loggerOnly;
+        $this->loggerOnly = (bool)$loggerOnly;
     }
 
     /**
@@ -222,8 +222,8 @@ class PlainTextHandler extends Handler
 
     /**
      * Get the frame args var_dump.
-     * @param  Frame $frame [description]
-     * @param  integer                 $line  [description]
+     * @param Frame $frame [description]
+     * @param integer $line [description]
      * @return string
      */
     private function getFrameArgsOutput(Frame $frame, $line)
@@ -274,7 +274,7 @@ class PlainTextHandler extends Handler
      */
     private function getTraceOutput()
     {
-        if (! $this->addTraceToOutput()) {
+        if (!$this->addTraceToOutput()) {
             return '';
         }
         $inspector = $this->getInspector();
@@ -288,7 +288,7 @@ class PlainTextHandler extends Handler
             $class = $frame->getClass();
 
             $template = "\n%3d. %s->%s() %s:%d%s";
-            if (! $class) {
+            if (!$class) {
                 // Remove method arrow (->) from output.
                 $template = "\n%3d. %s%s() %s:%d%s";
             }
@@ -337,7 +337,7 @@ class PlainTextHandler extends Handler
             $this->getLogger()->error($response);
         }
 
-        if (! $this->canOutput()) {
+        if (!$this->canOutput()) {
             return Handler::DONE;
         }
 

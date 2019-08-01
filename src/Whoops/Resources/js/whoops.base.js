@@ -31,7 +31,7 @@ Zepto(function($) {
 
     // pass the id in when we can for speed
     if (typeof(id) === 'undefined' || typeof(id) === 'object') {
-      var id = /frame\-line\-([\d]*)/.exec($activeLine.attr('id'))[1];
+      id = /frame-line-([\d]*)/.exec($activeLine.attr('id'))[1];
     }
 
     $('#frame-code-linenums-' + id).addClass('prettyprint');
@@ -39,7 +39,7 @@ Zepto(function($) {
 
     prettyPrint(highlightCurrentLine);
 
-  }
+  };
 
   /*
    * Highlight the active and neighboring lines for the current frame
@@ -69,7 +69,7 @@ Zepto(function($) {
 
     $container.scrollTop(0);
 
-  }
+  };
 
   /*
    * click handler for loading codeblocks
@@ -78,7 +78,7 @@ Zepto(function($) {
   $frameContainer.on('click', '.frame', function() {
 
     var $this  = $(this);
-    var id     = /frame\-line\-([\d]*)/.exec($this.attr('id'))[1];
+    var id     = /frame-line-([\d]*)/.exec($this.attr('id'))[1];
     var $codeFrame = $('#frame-code-' + id);
 
     if ($codeFrame) {
@@ -168,7 +168,7 @@ Zepto(function($) {
 			  $container.focus();
 			  e.preventDefault();
 		  }
-	  } else if (e.which == 78 /* n */) {
+	  } else if (e.which === 78 /* n */) {
       if ($appFramesTab.length) {
         setActiveFramesTab($('.frames-tab:not(.frames-tab-active)'));
       }
@@ -194,7 +194,7 @@ Zepto(function($) {
   function setActiveFramesTab($tab) {
     $tab.addClass('frames-tab-active');
 
-    if ($tab.attr('id') == 'application-frames-tab') {
+    if ($tab.attr('id') === 'application-frames-tab') {
       $frameContainer.addClass('frames-container-application');
       $allFramesTab.removeClass('frames-tab-active');
     } else {
