@@ -7,7 +7,7 @@
     "authors": [
         {
             "name": "Daniel W.",
-            "homepage": "https://www.dwwe.de",
+            "homepage": "https://github.com/dwwe2017/whoops",
             "role": "Developer"
         },
         {
@@ -26,8 +26,7 @@
         "symfony/var-dumper": "^2.6 || ^3.0 || ^4.0"
     },
     "suggest": {
-        "symfony/var-dumper": "Pretty print complex values better with var-dumper available",
-        "whoops/soap": "Formats errors as SOAP responses"
+        "symfony/var-dumper": "Pretty print complex values better with var-dumper available"
     },
     "autoload": {
         "psr-4": {
@@ -37,6 +36,11 @@
     "autoload-dev": {
         "psr-4": {
             "Whoops\\": "tests/Whoops/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.1-dev"
         }
     }
 }
