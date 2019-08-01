@@ -70,7 +70,7 @@ class PlainTextHandler extends Handler
     /**
      * Set the output logger interface.
      * @param  LoggerInterface|null $logger
-     *@throws InvalidArgumentException     If argument is not null or a LoggerInterface
+     * @throws InvalidArgumentException     If argument is not null or a LoggerInterface
      */
     public function setLogger($logger = null)
     {
@@ -202,7 +202,7 @@ class PlainTextHandler extends Handler
      * @param  bool|null $loggerOnly
      * @return null|bool|void
      */
-    public function loggerOnly($loggerOnly = null): void
+    public function loggerOnly($loggerOnly = null)
     {
         if (func_num_args() == 0) {
             return $this->loggerOnly;
