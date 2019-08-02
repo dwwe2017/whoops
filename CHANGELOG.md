@@ -1,3 +1,8 @@
+# 1.0.7
+
+* Bugfix for missing href closing tag at help urls
+
+
 # 1.0.6
 
 * Improved help url for Teamspeak Interface
