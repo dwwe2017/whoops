@@ -90,6 +90,27 @@ class PrettyPageHandler extends Handler
     ];
 
     /**
+     * @var array[]
+     */
+    private $help_urls = [
+        [
+            "name" => "Teamspeak Interface",
+            "href" => "https://teamspeak-interface.net",
+            "img" => "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyxpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTIzIDc5LjE1ODk3OCwgMjAxNi8wMi8xMy0wMToxMToxOSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6ODU3ODhDNThCNDU5MTFFOUJFQkZEM0I1MDBGNDJBRjUiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6ODU3ODhDNTdCNDU5MTFFOUJFQkZEM0I1MDBGNDJBRjUiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIEVsZW1lbnRzIDE1LjAgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDE5REY2MENDNjE0MTFFN0I2MkJFMzBFMUI2NEYwQUMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MDE5REY2MERDNjE0MTFFN0I2MkJFMzBFMUI2NEYwQUMiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4n1WotAAABdElEQVR42nTTvS9DURjHcbe9TSNE0W6NWCQNiWCQYLOYhKGD+AMwsLBYamIze1mIzWQwC4OB0SBpRBALkSiiRL1FfU/zu8njpk7yaXqe+5yX+5xzvXK5XFOlxZCUCJ7wgFI40Q/1sxhDB9KowzfeUcA5drGFr8oItwNZLf9td1Kt7aG+snsNHjEPHzGJBkwpNqycS5OXsxNsK/iCPrOrFcUz6rfiWrFT+C4YwYmCC2ZwLQpmB0E8q9gz0h4/TZQijxQyuIKHnCsRbtGPaXwijgsVudPN2IJX3CCuVdpxZlY9wKjp72sXvRGtFhxpVP/dsbVhHYsYVMzek5rKHWGWlI7rB91mlTlT8TVEFU+oNi6/8gq+KurahpkgeJWuUGxWuUX3+kFwx6w2ERpgDaleruURCx6Mh27aJgaQdKeEHizjw+Qs2Yvkh3Zhb+V9lfgxGu0EwSQzONSRvpkBJRX6CPPBd+B4/3zOzZJQv6hPuhBO/BVgAOdOhgjdMgKWAAAAAElFTkSuQmCC"
+        ],
+        [
+            "name" => "Google",
+            "href" => "https://google.com/search?q=",
+            "img" => "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABoUlEQVQ4jY2SPWhUURCFv1keyxLCEiSIioQgwUIsRFKIWIqgnWgh2Ftb24m1tUUQFcs0IlhaB8FACgtF/EVQkYgsG4xrdj6bu7svbxNwbnN598x558ycEJkq6QJLwBxQqX3gI/AtWpENbO1oSz2bmQ/Ut+pv9a/6NTOfZeY1tVPv2dVcAJ/UofpH3VR/qFvqMDM/qMt1gmqsRJcj4i5wBPgMPATWgG3gJHA5IlaBV1MWMnNWXSl//q5eVauGvQV1xt2mGT2ezsx3xe9ttd0E7neqIn8+Ig4Bv4B1gkFN4i3gcGNPA2CF4PVoBhXQVnsR0WuArwMnGt92gOdQCCKiD/SAWXUxiDr4KfCy3BeBM0XBYJIDXVJfZOZQXVUP1IbXUWfUbmbeKet9o56qD7Gl3izBUb2fmcdLc6UeVG+UXAzVe5k5IxLjKMs88Ai4pO5ExEbZ+ba6EBHngC7wHrhCsLFXlI+pj9XNYmdcmbmlrmfmebU16pkomKyto14ALgJHI6JSf0bEGvCE4EsdPk0wIWqrcxHRUvvRiv5esP0J/rP+AT9WpDkSOmlEAAAAAElFTkSuQmCC"
+        ],
+        [
+            "name" => "Stack Overflow",
+            "href" => "https://stackoverflow.com/search?q=",
+            "img" => "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABUklEQVQ4jY2SMWtUURCFv/MQSSG4pLQSsQipBYkQECzsAipYWQuShGjjH7C0SJEygoiIf0AEsbALWKYQ7IKgTbAKS4og81mYJ3cfu5vc28ww55w7Z+ZG5MwjHdAR/gxL3TnJz9W1aeW5ApYXCQUcJ3mJXBliMtPCv5efApfV18CLJJ36JF2OGtyMq516q6oO1J2qWq6qH1X1uMXNIl9SH6rX1CX1i/pZ3aiqfXWpx063IFfVXWAxyRv1O/AsCcBb4APh6KwZjNS1JFvAAvAR+AW8IoznD1HeAcfAV+CneiPJXeAe4XcL7RrSdaTf9ScVYAt4DzwA9oBRgxl0II+AdWAVuP1fVxeBm8C3JCfAOmGlr1+Y6FxJsgBs9znA6fAOgJOh2wmBJBDGyJ3TvBqrY+D+XAF1OWZ/0FEbj9TDkKkCe8AmzWB7chsnmdjC7H9wzvMXsS/IfHnWsFcAAAAASUVORK5CYII="
+        ]
+    ];
+
+    /**
      * A string identifier for a known IDE/text editor, or a closure
      * that resolves a string that can be used to open a given file
      * in an editor. If the string contains the special substrings
@@ -230,6 +251,7 @@ class PrettyPageHandler extends Handler
             "message" => $inspector->getExceptionMessage(),
             "previousMessages" => $inspector->getPreviousExceptionMessages(),
             "docref_url" => $inspector->getExceptionDocrefUrl(),
+            "help_urls" => $this->getHelpUrls(),
             "code" => $code,
             "previousCodes" => $inspector->getPreviousExceptionCodes(),
             "plain_exception" => Formatter::formatExceptionPlain($inspector),
@@ -729,5 +751,21 @@ class PrettyPageHandler extends Handler
             }
         }
         return $values;
+    }
+
+    /**
+     * @param array[] $help_urls
+     */
+    public function setHelpUrls(array $help_urls): void
+    {
+        $this->help_urls = $help_urls;
+    }
+
+    /**
+     * @return array[]
+     */
+    public function getHelpUrls(): array
+    {
+        return $this->help_urls;
     }
 }
