@@ -1,3 +1,13 @@
+# 1.0.6
+
+* Improved help url for Teamspeak Interface
+
+
+# 1.0.5
+
+* Help Urls can now be determined via setHelpUrls in the Pretty Page Handler
+
+
 # 1.0.4
 
 * PHP 7.2 features implemented
