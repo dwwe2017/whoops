@@ -59,9 +59,10 @@
                             ? sprintf("%s%s", $help_url["href"], urlencode(implode('\\', $name) . ' ' . $message)) : $help_url["href"]
                         ?>
                         <a rel="noopener noreferrer" target="_blank" href="<?php echo $href; ?>>"
-                           title="Search for help on <?php echo $help_url["name"]; ?>>.">
+                           title="Search for help on <?php echo $help_url["name"]; ?>.">
                             <img alt="<?php echo $help_url["name"]; ?>" height="16" width="16"
                                  src="<?php echo $help_url["img"]; ?>">
+                        </a>
                     </li>
                 <?php endforeach; ?>
             <?php endif; ?>
