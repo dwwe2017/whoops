@@ -1,3 +1,8 @@
+# 1.0.8
+
+* For PlainText dealers now individual HTML templates can be set
+
+
 # 1.0.7
 
 * Bugfix for missing href closing tag at help urls
