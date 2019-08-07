@@ -58,6 +58,11 @@ class PlainTextHandler extends Handler
     private $loggerOnly = false;
 
     /**
+     * @var string|null
+     */
+    private $template = null;
+
+    /**
      * Constructor.
      * @param LoggerInterface|null $logger
      * @throws InvalidArgumentException     If argument is not null or a LoggerInterface
@@ -341,7 +346,14 @@ class PlainTextHandler extends Handler
             return Handler::DONE;
         }
 
-        echo $response;
+        if(!is_null($this->template))
+        {
+            require_once $this->template;
+        }
+        else
+        {
+            echo $response;
+        }
 
         return Handler::QUIT;
     }
@@ -351,6 +363,17 @@ class PlainTextHandler extends Handler
      */
     public function contentType()
     {
-        return 'text/plain';
+        return is_null($this->template) ? 'text/plain' : 'text/html';
+    }
+
+    /**
+     * @param string|null $template
+     */
+    public function setTemplate(?string $template): void
+    {
+        if(file_exists($template))
+        {
+            $this->template = $template;
+        }
     }
 }
